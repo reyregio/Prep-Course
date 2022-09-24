@@ -269,7 +269,7 @@ function continueStatement(numero) {
   for(let i=0;i<10;i++){
     if(i===5)continue;
     else{
-       suma=suma+2;
+      suma=suma+2;
       arr.push(suma);
     }
   }

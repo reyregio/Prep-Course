@@ -5,11 +5,16 @@ function deObjetoAmatriz(objeto){
   // un par clave-valor en forma de matriz.
   //Ejemplo: 
   /*objeto({
-      D: 1,
-      B: 2,
-      C: 3
-    }) ➞ [["D", 1], ["B", 2], ["C", 3]]*/
+    D: 1,
+    B: 2,
+    C: 3
+  }) ➞ [["D", 1], ["B", 2], ["C", 3]]*/
   //Escribe tu código aquí
+  var matriz=[];
+  for(var propiedad in objeto){
+    matriz.push([propiedad,objeto[propiedad]]);
+  }
+  return matriz;
 }
 
 
@@ -18,6 +23,15 @@ function numberOfCharacters(string) {
   //en formato par clave-valor.
   //Ej: Recibe ---> "adsjfdsfsfjsdjfhacabcsbajda" || Devuelve ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 } 
   //Escribe tu código aquí
+  let obj={};
+  for(let i=0;i<string.length;i++){
+    if(!obj[string[i]]){
+      obj[string[i]]=0;
+      
+    }
+    obj[string[i]]+=1;
+  }
+  return obj;
 }
 
 
@@ -26,6 +40,16 @@ function capToFront(s) {
   //al principio de la palabra.
   //Ejemplo: soyHENRY -> HENRYsoy
   //Escribe tu código aquí
+  var mayusc= '';
+  var minus= '';
+  for(let i=0;i<s.length;i++){
+    if(s[i]===s[i].toUpperCase()){
+      mayusc+=s[i];
+    }else{
+      minus+=s[i];
+    }
+  }
+  return mayusc+minus;
 }
 
 
@@ -35,6 +59,16 @@ function asAmirror(str) {
   //pero con cada una de sus palabras invertidas, como si fuera un espejo.
   //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
   //Escribe tu código aquí
+  var frase=str;
+  console.log(frase);
+  var frasePorPAlabras=frase.split(" ");
+  console.log(frasePorPAlabras);
+  var fraseAdevolver=[];
+  for(var i=0;i<frasePorPAlabras.length;i++){
+    fraseAdevolver.push(frasePorPAlabras[i].split("").reverse().join(""))
+  }
+  console.log(fraseAdevolver);
+  return fraseAdevolver.join(" ");
 } 
 
 
@@ -43,6 +77,14 @@ function capicua(numero){
   //La misma debe retornar: "Es capicua" si el número se número que se lee igual de 
   //izquierda a derecha que de derecha a izquierda. Caso contrario retorna "No es capicua"
   //Escribe tu código aquí
+  let nuevoNumero=numero.toString();
+  let espejo="";
+  for(let i=nuevoNumero.length-1;i>=0;i--){
+    espejo+=nuevoNumero[i];
+  }
+  if(nuevoNumero===espejo)return "Es capicua";
+  return "No es capicua";
+  
 }
 
 
@@ -50,6 +92,13 @@ function deleteAbc(cadena){
   //Define una función que elimine las letras "a", "b" y "c" de la cadena dada 
   //y devuelva la versión modificada o la misma cadena, en caso de contener dichas letras.
   //Escribe tu código aquí
+  let nuevaCadena="";
+  for(let letra of cadena){
+    if(letra !== "a"&& letra !== "b"&&letra!=="c"){
+      nuevaCadena+=letra;
+    }
+  }
+  return nuevaCadena;
 }
 
 
@@ -57,6 +106,12 @@ function sortArray(arr) {
   //La función recibe una matriz de strings. Ordena la matriz en orden creciente de longitudes de cadena
   //Ej: Recibe ---> ["You", "are", "beautiful", "looking"] || Devuelve ---> [“You", "are", "looking", "beautiful"]
   //Escribe tu código aquí
+  
+  let callback=function(a,b){
+    return a.length-b.length;
+  };
+  return arr.sort(callback);
+  
 }
 
 
@@ -66,6 +121,15 @@ function buscoInterseccion(arreglo1, arreglo2){
   //Si no tienen elementos en común, retornar un arreglo vacío.
   //Aclaración: los arreglos no necesariamente tienen la misma longitud
   //Escribe tu código aquí  
+  let nuevoArray=[];
+  for(let elementoArreglo1 of arreglo1){
+    for(let elementoArreglo02 of arreglo2){
+      if(elementoArreglo1===elementoArreglo02){
+        nuevoArray.push(elementoArreglo02);
+      }
+    }
+  }
+  return nuevoArray;
 }
 
 
@@ -74,13 +138,13 @@ function buscoInterseccion(arreglo1, arreglo2){
 // --------------------------------
 
 module.exports = {
-   deObjetoAmatriz,
-   numberOfCharacters,
-   capToFront,
-   asAmirror,
-   capicua,
-   deleteAbc,
-   sortArray,
-   buscoInterseccion,
+  deObjetoAmatriz,
+  numberOfCharacters,
+  capToFront,
+  asAmirror,
+  capicua,
+  deleteAbc,
+  sortArray,
+  buscoInterseccion,
 };
 
